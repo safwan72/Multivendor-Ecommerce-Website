@@ -1,0 +1,26 @@
+{% extends "Base.html" %}
+{% load crispy_forms_tags %}
+
+{% block body_block %}
+
+<!-- {{product.name}} -->
+
+<div class="card my-5">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="/media/{{product.mainimage}}" style="width:100%;height:100%;object-fit:cover" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title my-2">{{product.name}}</h5>
+          <p class="card-text text-warning my-2" style="font-size: 24px;">BDT &#2547;{{product.price|floatformat:"0"}}</p>
+          <p style="font-size: 21px; margin-bottom:15px"><strong>Seller: </strong> {{product.added_by.user.username}} </p>
+          <h6 style="font-size: 28px; margin-bottom:15px">Description: </h6>
+          <p class="card-text my-2" >{{product.detail_text|linebreaks}}</p>
+          <a href="{% url 'App_Order:add_toCart' pk=product.pk %}" class="my-3 btn btn-info">Add To Cart</a>
+          <p class="card-text my-2"><small class="text-muted">Added at : {{product.created_at|date:"D d M Y"}}</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock  %}

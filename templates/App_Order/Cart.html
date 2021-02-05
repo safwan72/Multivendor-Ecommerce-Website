@@ -1,0 +1,49 @@
+{% extends "Base.html" %}
+{% load crispy_forms_tags %}
+
+{% block body_block %}
+
+<div class="container my-5">
+    <h1 class='mb-5 text-center'>Your Cart Total &#2547; {{order.get_total_price|floatformat:2}}</h1>
+    <table class="table table-hover table-borderless my-2">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cart in cart %}
+            <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{cart.product.name}}</td>
+                <td>
+                    <a href="{% url 'App_Order:decrease' pk=cart.product.pk %}"><span
+                            class="badge bg-dark text-light mr-2"> - </span></a>
+                    {{cart.quantity}}
+                    <a href="{% url 'App_Order:increase' pk=cart.product.pk %}"><span
+                            class="badge bg-dark text-light ml-2"> + </span></a>
+                </td>
+                <td>&#2547; {{cart.get_total|floatformat:2}}</td>
+            </tr>
+            {% endfor %}
+            <tr class='my-3'>
+                <td colspan='3'>
+                    <h5 class="text-center"> Total </h5>
+                </td>
+                <td colspan='2' >&#2547; {{order.get_total_price|floatformat:2}}</td>
+            </tr>
+            <tr>
+                <td colspan="3"></td>
+                <td ><a href="{% url 'App_Order:checkout' %}" class='btn btn-info ml-auto'>Proceed to
+                        Checkout</a></td>
+                <td rowspan="1" ><a href="{% url 'App_Login:home' %}" class='btn btn-warning ml-auto'>Continue Shopping</a>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    {% endblock  %}

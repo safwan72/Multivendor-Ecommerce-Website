@@ -1,0 +1,65 @@
+{% extends "Base.html" %}
+{% load crispy_forms_tags %}
+{% block title_block %}
+Add To Shop
+{% endblock title_block %}
+
+{% block body_block %}
+
+<h1 class="text-center my-5">Add Products to Shop</h1>
+
+<div class="row">
+
+  <div class="col-md-6">
+    {% for product in shop_products  %}
+    <table class="table table-hover mt-5 table-borderless table-sm">
+      <caption> Products </caption>
+      <thead>
+        <tr>
+          <th scope="col">Serial</th>
+          <th scope="col">Product</th>
+          <th scope="col">Old Price</th>
+          <th scope="col">New Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">{{forloop.counter}}</th>
+          <td>{{product.name}}</td>
+          <td>{{product.old_price}}</td>
+          <td>{{product.price}}</td>
+        </tr>
+      </tbody>
+      </table>
+      {%empty%}
+      <h2>No Products In the Shop</h2>
+      {% endfor %}
+
+  </div>
+  <div class="col-md-6">
+    {% for product in user_products %}
+    <table class="table table-hover mt-5 table-borderless table-sm">
+      <caption> Products </caption>
+      <thead>
+        <tr>
+          <th scope="col">Serial</th>
+          <th scope="col">Product</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">{{forloop.counter}}</th>
+          <td>{{product.name}}</td>
+          <td>{{product.option1}}</td>
+          <td><a href="{% url 'App_Shop:addtoshop' pk=product.pk %}" class="btn btn-info">Add To Shop</a></td>
+        </tr>
+      </tbody>
+      {%empty%}
+      <h2> No Products to Add To the Shop </h2>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+
+{% endblock body_block %}

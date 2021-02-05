@@ -1,0 +1,31 @@
+{% extends "Base.html" %}
+{% load crispy_forms_tags %}
+{% block title_block %}
+Home
+{% endblock title_block %}
+
+
+{% block body_block %}
+
+<div class="row row-cols-1 row-cols-md-3 g-2 my-5">
+  {% for product in product %}
+  <div class="col">
+    <div class='card'>
+      <img src="/media/{{product.mainimage}}" alt="{{product.name}}" class="card-img-top">
+      <div class="card-body">
+        <h5>{{product.name}}</h5>
+        <p class="card-text">{{product.preview_text}}</p>
+        <a href="{% url 'App_Shop:viewproduct' pk=product.pk %}" class="btn btn-warning my-3">See More</a>
+        <div>
+          <div class='card-footer'>
+            <span>&#2547; {{product.price|floatformat:2}}</span> &nbsp;&nbsp;&nbsp;&nbsp;
+            <span style="text-decoration: line-through;">&#2547; {{product.old_price|floatformat:2}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock body_block %}
