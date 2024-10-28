@@ -17,19 +17,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_DIR=BASE_DIR/'templates'
 MEDIA_DIR=BASE_DIR/'media'
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = "jfqKa_I32z5f0HPOoq-uQRFNKUmxgFjxt-Eyljj8YkKKt_aG87X1uY0ocazLcCv42do"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG')
+DEBUG = True
 
-ALLOWED_HOSTS = ["safwan72.pythonanywhere.com", "localhost"]
+ALLOWED_HOSTS = ["*"]
 
-
+DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 # Application definition
 
 INSTALLED_APPS = [

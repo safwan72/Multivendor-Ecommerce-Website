@@ -2,7 +2,7 @@ from django.db import models
 
 #To Create A Custom User Model and admin panel
 from django.contrib.auth.models import BaseUserManager,AbstractBaseUser,PermissionsMixin
-from django.utils.translation import ugettext_lazy
+from django.utils.translation import gettext_lazy
 
 
 # to automaticallly create a one to one relation
@@ -48,10 +48,10 @@ class User(AbstractBaseUser,PermissionsMixin):
     is_customer=models.BooleanField(default=False)
     is_seller=models.BooleanField(default=False)
     is_staff=models.BooleanField(
-        ugettext_lazy('staff_status'),default=False,help_text='Determines Whether They Can Log in this Site or not'
+        gettext_lazy('staff_status'),default=False,help_text='Determines Whether They Can Log in this Site or not'
     )    
     is_active=models.BooleanField(
-        ugettext_lazy('active'),default=True,help_text='Determines Whether their Account Status is Active or not'
+        gettext_lazy('active'),default=True,help_text='Determines Whether their Account Status is Active or not'
     )    
     USERNAME_FIELD='email'
     REQUIRED_FIELDS=['username']
